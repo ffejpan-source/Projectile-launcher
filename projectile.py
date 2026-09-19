@@ -1,6 +1,7 @@
 import math
 import matplotlib.pyplot as plt #give nickname plt
-def simulate_trajectory(angle_deg, velocity):
+
+def simulate_trajectory(angle_deg, velocity, start_height):
     angle_rad = math.radians(angle_deg) #convert to radians for sin and cos functions
     vx = velocity*math.cos(angle_rad) #velocity in the horizontal direction
     vy = velocity*math.sin(angle_rad) #velocity in the vertical direction
@@ -12,7 +13,7 @@ def simulate_trajectory(angle_deg, velocity):
     
     while True:
         x = vx*t
-        y = vy*t - 0.5*g*t**2
+        y = start_height + vy*t - 0.5*g*t**2
     
         if y < 0:
             break                   #projectile has hit the ground
@@ -22,11 +23,14 @@ def simulate_trajectory(angle_deg, velocity):
     return x_values, y_values
 
 num_launches = int(input("How many launches do you want to compare? "))
+
 for i in range(num_launches):
     angle_deg = float(input(f"Launch {i+1} — angle (degrees): ")) #fstring for inputting variable
     velocity = float(input(f"Launch {i+1} — velocity (m/s): "))
-    x_values, y_values = simulate_trajectory(angle_deg, velocity)
+    start_height = float(input(f"Launch {i+1} — starting height (m): "))
+    x_values, y_values = simulate_trajectory(angle_deg, velocity, start_height)
     plt.plot(x_values, y_values, label=f"{angle_deg}°, {velocity} m/s")
+
 plt.xlabel("Horizontal distance (m)")
 plt.ylabel("Height (m)")
 plt.title("Projectile Motion")
