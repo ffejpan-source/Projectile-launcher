@@ -1,3 +1,7 @@
+## Physics Project Simulations
+Different projects with physics simulations created in python.
+Currently building the projectile motion simulator and other simulations will be built in the future.
+
 # Projectile Motion Simulator
 
 A Python simulator that calculates and visualizes projectile trajectories
